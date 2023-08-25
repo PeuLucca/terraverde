@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { Controller, Scene } from 'react-scrollmagic';
+import { motion } from 'framer-motion';
 
-const Section = styled.section`
+const Section = styled(motion.section)`
   opacity: 0;
   transform: translateY(50px);
-  transition: opacity 1s, transform 1.5s;
+  transition: opacity 0.5s, transform 0.5s;
 
   &.fade-in {
     opacity: 1;
@@ -14,14 +14,35 @@ const Section = styled.section`
 `;
 
 const Animation = ({ children }) => {
+  const sectionRef = useRef(null);
+  const [shouldAnimate, setShouldAnimate] = useState(true);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && shouldAnimate) {
+          section.classList.add('fade-in');
+          setShouldAnimate(false);
+          observer.unobserve(section);
+        }
+      });
+    }, {
+      threshold: 0.8
+    });
+
+    observer.observe(section);
+
+    return () => {
+      observer.unobserve(section);
+    };
+  }, [shouldAnimate]);
+
   return (
-    <Controller>
-      <Scene classToggle="fade-in" reverse={false} triggerHook={0.8}>
-        {(progress, event) => (
-          <Section className={event === 'enter' ? 'fade-in' : ''}>{children}</Section>
-        )}
-      </Scene>
-    </Controller>
+    <Section ref={sectionRef}>
+      {children}
+    </Section>
   );
 };
 
