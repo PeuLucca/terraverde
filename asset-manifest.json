@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/terraverde/static/css/main.2b972c37.css",
+    "main.js": "/terraverde/static/js/main.120323d9.js",
+    "static/js/787.47120d86.chunk.js": "/terraverde/static/js/787.47120d86.chunk.js",
+    "static/media/1.png": "/terraverde/static/media/1.5fa92ea956e19ef23374.png",
+    "static/media/3.png": "/terraverde/static/media/3.287c73c0294de9d23f2f.png",
+    "static/media/2.png": "/terraverde/static/media/2.4101974f4e623b0b281a.png",
+    "index.html": "/terraverde/index.html",
+    "main.2b972c37.css.map": "/terraverde/static/css/main.2b972c37.css.map",
+    "main.120323d9.js.map": "/terraverde/static/js/main.120323d9.js.map",
+    "787.47120d86.chunk.js.map": "/terraverde/static/js/787.47120d86.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2b972c37.css",
+    "static/js/main.120323d9.js"
+  ]
+}
