@@ -1,8 +1,6 @@
-// Core
-import React from 'react';
+import React, { useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
 
-// Style
 import styled from 'styled-components';
 
 const HeaderContainer = styled.header`
@@ -13,16 +11,33 @@ const HeaderContainer = styled.header`
   padding: 10px;
 `;
 
+
 const Logo = styled.div`
   font-size: 24px;
   font-weight: bold;
   margin-left: 3em;
+
+  @media (max-width: 768px) {
+    margin-left: 0; /* Add this line */
+    margin-right: 33%;
+  }
+`;
+
+
+const Hamburger = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+    cursor: pointer;
+    margin-right: 1em;
+    z-index: 99999;
+  }
 `;
 
 const Menu = styled.nav`
   display: flex;
   align-items: center;
-  margin-right: 10em;
 
   a {
     color: #000000c5;
@@ -37,6 +52,25 @@ const Menu = styled.nav`
       transform: scale(1.1);
     }
   }
+
+  @media (max-width: 768px) {
+    z-index: 9999;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    margin-top: -8%;
+    top: 60px;
+    left: 0;
+    transition: transform 0.5s;
+    transform: ${props => (props.open ? 'translateX(0)' : 'translateX(-100%)')};
+    border: 2px solid #437D30;
+    padding: 1em;
+
+    a {
+      font-size: 20px;
+    }
+  }
 `;
 
 const ButtonStyle = styled.button`
@@ -49,7 +83,7 @@ const ButtonStyle = styled.button`
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  
+
   &:hover {
     background-color: #437D30;
     color: white;
@@ -57,29 +91,51 @@ const ButtonStyle = styled.button`
 `;
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <>
-        <HeaderContainer>
+      <HeaderContainer>
+        <Hamburger onClick={toggleMenu}>
+          <svg
+            width="30"
+            height="30"
+            viewBox="0 0 30 30"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke="#000"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeMiterlimit="10"
+              d="M4 7h22M4 15h22M4 23h22"
+            />
+          </svg>
+        </Hamburger>
         <Logo>
-          <img 
-          src="https://s3.amazonaws.com/gupy5/production/companies/5845/career/14498/images/2023-03-24_12-22_companyLogoUrl.png" 
-          alt="TerraverdeAgro"
-          style={{height: '120px'}}
+          <img
+            src="https://s3.amazonaws.com/gupy5/production/companies/5845/career/14498/images/2023-03-24_12-22_companyLogoUrl.png"
+            alt="TerraverdeAgro"
+            style={{ height: '120px' }}
           />
         </Logo>
-        <Menu>
-            <a href="#menu">Menu</a>
-            <a href="#rental">Rental</a>
-            <a href="#noticias">Notícias</a>
-            <a href="#localizacao">Localização</a>
-            <a href="#faleconosco">Fale Conosco</a>
-            <a href="https://play.google.com/store/apps/details?id=com.deere.myoperations" target='_blank'>
-              <ButtonStyle>
-                Baixe o app <FaPlay style={{ verticalAlign: 'middle', marginLeft: '5px' }} />
-              </ButtonStyle>
-            </a>
+        <Menu open={menuOpen}>
+          <a href="#menu">Menu</a>
+          <a href="#rental">Rental</a>
+          <a href="#noticias">Notícias</a>
+          <a href="#localizacao">Localização</a>
+          <a href="#faleconosco">Fale Conosco</a>
+          <a href="https://play.google.com/store/apps/details?id=com.deere.myoperations" target='_blank'>
+            <ButtonStyle>
+              Baixe o app <FaPlay style={{ verticalAlign: 'middle', marginLeft: '5px' }} />
+            </ButtonStyle>
+          </a>
         </Menu>
-        </HeaderContainer>
+      </HeaderContainer>
     </>
   );
 };

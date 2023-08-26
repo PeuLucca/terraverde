@@ -14,6 +14,12 @@ import Maps from './components/Maps';
 import Footer from './components/Footer';
 import Animation from './components/Animation';
 
+const AppWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+`;
+
 const WhatsAppIcon = styled.a`
 z-index: 99999;
 position: fixed;
@@ -51,7 +57,30 @@ const ButtonStyle = styled.button`
     background-color: #437D30;
     color: white;
   }
+
+  @media (max-width: 768px) {
+    margin-top: 2%;
+    margin-left: 22%;
+  }
+
 `;
+
+const Paragrafo = styled.p`
+  font-size: 17px;
+  width: 75%;
+  background-color: #EEC22C;
+  padding: 15px;
+  border-radius: 15px;
+  font-family: Trebuchet MS, Lucida Sans Unicode, Lucida Grande, Lucida Sans, Arial, sans-serif;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    margin-left: -4%;
+  }
+`;
+
 
 function App() {
 
@@ -62,7 +91,7 @@ function App() {
   ];
 
   return (
-    <div>
+    <AppWrapper>
 
       <WhatsAppIcon href="https://api.whatsapp.com/send?phone=5519971100603" target="_blank" rel="noopener noreferrer">
         <FaWhatsapp />
@@ -81,10 +110,10 @@ function App() {
           text="Fale com nossa equipe altamente especializada e encontre o melhor produto para sua necessidade."
           component={
             <>
-            <p style={{ fontSize: '17px', width: '75%', backgroundColor: '#EEC22C', padding: '15px', borderRadius: '15px', fontFamily: 'Trebuchet MS, Lucida Sans Unicode, Lucida Grande, Lucida Sans, Arial, sans-serif;' }}>
-            Com uma equipe altamente especializada, a empresa Terraverde Rental faz parte do grupo Terraverde, que atua há 19 anos como concessionário John Deere.
-            <br /><br />Portanto, estendemos aos clientes Rental a cultura de atendimento e excelência em pós-vendas do grupo Terraverde.
-            </p>
+            <Paragrafo>
+              Com uma equipe altamente especializada, a empresa Terraverde Rental faz parte do grupo Terraverde, que atua há 19 anos como concessionário John Deere.
+              <br /><br />Portanto, estendemos aos clientes Rental a cultura de atendimento e excelência em pós-vendas do grupo Terraverde.
+            </Paragrafo>
             <a href="https://www.terraverdeagro.com.br/contact" target='_blank'>
             <ButtonStyle>
               Fale Conosco <FontAwesomeIcon  style={{marginLeft: '5px'}} icon={faArrowRight} className="arrow-icon" />
@@ -103,10 +132,10 @@ function App() {
             text="Gator™ Veículos Utilitários"
             component={
               <>
-              <p style={{ fontSize: '17px', width: '75%', backgroundColor: '#EEC22C', padding: '15px', borderRadius: '15px', fontFamily: 'Trebuchet MS, Lucida Sans Unicode, Lucida Grande, Lucida Sans, Arial, sans-serif;' }}>
+              <Paragrafo>
               Confiáveis e práticos, os Gators John Deere apresentam capacidade e robustez superior para transpor os desafios mais difíceis, tornando as tarefas do dia a dia mais simples e prazerosas.
               <br /><br />
-              </p>
+              </Paragrafo>
               <a href="https://www.terraverdeagro.com.br/page/pt/equipamentos-para-jardinagem/" target='_blank'>
                 <ButtonStyle>
                   <FontAwesomeIcon  style={{marginLeft: '5px'}} icon={faShoppingCart} className="arrow-icon" /> Comprar Agora
@@ -127,7 +156,7 @@ function App() {
       </Animation>
 
       <Footer />
-    </div>
+    </AppWrapper>
   );
 }
 

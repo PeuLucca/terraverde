@@ -15,10 +15,12 @@ const NewsTitle = styled.h1`
 
 const NewsGrid = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+  }
 `;
 
 const NewsItem = styled.div`
@@ -26,19 +28,22 @@ const NewsItem = styled.div`
   padding: 20px;
   box-sizing: border-box;
   text-align: center;
+
+  @media (max-width: 768px) {
+    flex: 0 0 100%; /* Occupy full width on smaller screens */
+  }
 `;
 
 const NewsImage = styled.img`
   max-width: 100%;
   height: auto;
   border-radius: 5px;
-  transition: transform 0.3s ease-in-out; /* Adicionando uma transição suave */
+  transition: transform 0.3s ease-in-out;
 
   &:hover {
-    transform: scale(1.05); /* Escala um pouco a imagem no hover */
+    transform: scale(1.05);
   }
 `;
-
 
 const NewsTitleText = styled.h2`
   font-size: 18px;
@@ -47,7 +52,7 @@ const NewsTitleText = styled.h2`
 `;
 
 const ReadMoreButton = styled.button`
-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   background-color: #437D30;
   color: white;
   border: none;
@@ -58,7 +63,7 @@ font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida San
   font-size: 14px;
   margin-top: 10px;
   transition: background-color 0.3s, color 0.3s;
-  
+
   &:hover {
     background-color: white;
     color: #437D30;
@@ -103,20 +108,20 @@ const SeeMoreButton = styled.button`
 const News = () => {
   const newsItems = [
     {
-        imageSrc: 'https://www.terraverdeagro.com.br/sites/terraverdeagro.com.br/files/2021-03/Imagem-site.png',
-        title: 'Taxa variável: o mecanismo de aplicação correta',
-        site: 'https://www.terraverdeagro.com.br/node/2400'
-      },
-      {
-        imageSrc: 'https://www.terraverdeagro.com.br/sites/terraverdeagro.com.br/files/2021-02/Imagem_2.jpg',
-        title: 'Como prolongar a vida útil do motor? Saiba mais sobre a limpeza flush',
-        site: 'https://www.terraverdeagro.com.br/node/2397'
-      },
-      {
-        imageSrc: 'https://www.terraverdeagro.com.br/sites/terraverdeagro.com.br/files/2021-02/Imagem-topo_1.png',
-        title: 'Terraverde consolida a fase 3 em agricultura de precisão',
-        site: 'https://www.terraverdeagro.com.br/node/2395'
-      }
+      imageSrc: 'https://www.terraverdeagro.com.br/sites/terraverdeagro.com.br/files/2021-03/Imagem-site.png',
+      title: 'Taxa variável: o mecanismo de aplicação correta',
+      site: 'https://www.terraverdeagro.com.br/node/2400'
+    },
+    {
+      imageSrc: 'https://www.terraverdeagro.com.br/sites/terraverdeagro.com.br/files/2021-02/Imagem_2.jpg',
+      title: 'Como prolongar a vida útil do motor? Saiba mais sobre a limpeza flush',
+      site: 'https://www.terraverdeagro.com.br/node/2397'
+    },
+    {
+      imageSrc: 'https://www.terraverdeagro.com.br/sites/terraverdeagro.com.br/files/2021-02/Imagem-topo_1.png',
+      title: 'Terraverde consolida a fase 3 em agricultura de precisão',
+      site: 'https://www.terraverdeagro.com.br/node/2395'
+    }
   ];
 
   return (
